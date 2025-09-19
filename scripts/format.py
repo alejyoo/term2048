@@ -1,9 +1,9 @@
 import subprocess
 
 commands = [
-  ["black", "src/"],
-  ["isort", "src/"],
-  ["flake8", "src/"]
+  ["black", "src/", "tests/"],
+  ["isort", "src/", "tests/"],
+  ["flake8", "src/", "tests/"]
 ]
 
 for cmd in commands:
