@@ -35,3 +35,40 @@ def add_random_tiles(board: Board, count: int = 1) -> bool:
         board[row][col] = tile_value
 
     return True
+
+
+def slide_row(row: List[int]) -> Tuple[List[int], bool]:
+    non_zero = [num for num in row if num != 0]
+    merged = []
+    i = 0
+
+    while i < len(non_zero):
+        current_tile = non_zero[i]
+        has_next_tile = i + 1 < len(non_zero)
+        next_tile_equals = has_next_tile and non_zero[i + 1] == current_tile
+
+        if next_tile_equals:
+            merged.append(current_tile * 2)
+            i += 2
+        else:
+            merged.append(current_tile)
+            i += 1
+
+    result = merged + [0] * (len(row) - len(merged))
+    changed = result != row
+
+    return result, changed
+
+
+def move_left(board: Board) -> Tuple[Board, bool]:
+    transformed_board = []
+    has_any_movement = False
+
+    for current_row in board:
+        transformed_row, row_has_changed = slide_row(current_row)
+        transformed_board.append(transformed_row)
+
+        if row_has_changed:
+            has_any_movement = True
+
+    return transformed_board, has_any_movement
