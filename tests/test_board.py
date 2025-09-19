@@ -1,8 +1,4 @@
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
-from board import create_board, add_random_tiles
+from board import add_random_tiles, create_board
 
 
 def test_add_random_tiles_return_false():
