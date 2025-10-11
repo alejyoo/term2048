@@ -13,7 +13,7 @@ def create_board(size: int = 4) -> Board:
 def empty_position(board: Board) -> List[EmptyPositions]:
     """It goes through each row and column and
     returns the empty positions (row, col) in a tuple."""
-    result = []
+    result: List[EmptyPositions] = []
     for idx_row, row in enumerate(board):
         for idx_col, val in enumerate(row):
             if val == 0:
@@ -39,7 +39,7 @@ def add_random_tiles(board: Board, count: int = 1) -> bool:
 
 def slide_row(row: List[int]) -> Tuple[List[int], bool]:
     non_zero = [num for num in row if num != 0]
-    merged = []
+    merged: List[int] = []
     i = 0
 
     while i < len(non_zero):
@@ -61,7 +61,7 @@ def slide_row(row: List[int]) -> Tuple[List[int], bool]:
 
 
 def move_left(board: Board) -> Tuple[Board, bool]:
-    transformed_board = []
+    transformed_board: Board = []
     has_any_movement = False
 
     for current_row in board:
